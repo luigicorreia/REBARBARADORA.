@@ -32,13 +32,21 @@ end
 
 
 function mov()
-if btn(0) and col(2)==0 then playerx-=1 end
+if btn(0) and col(2)==0 then playerx-=1 
+else
 
-if btn(1) and col(4)==0 then playerx+=1 end
+	if btn(1) and col(4)==0 then playerx+=1 
+	else
 
-if btn(2) and col(1)==0 then playery-=1 end
+		if btn(2) and col(1)==0 then playery-=1
+		else
 
-if btn(3) and col(3)==0 then playery+=1 end
+			if btn(3) and col(3)==0 then playery+=1 
+			end
+	 end
+	end
+end
+			
 
 
 end
