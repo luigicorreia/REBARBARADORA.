@@ -31,20 +31,45 @@ whip_sp2=0
 
 
 bullets = {}
+if(start)then
+  start=false
 menu()
+else
 room_init(level)
+end
 
+end
+
+function wait(a)
+
+  for i=0, a do
+    flip()
+  end
+end
+
+function display_text(text)
+    x=0
+  y=0
+  for i=1, #text do
+    print(sub(text,i,i),x,y)
+    x = x + 5
+    wait(2)
+  end
 end
 
 function menu()
-cls()
-print("click z to start!")
-while(not btn(4)) do
+  cls()
+
+  text = "click z to start"
+
+  display_text(text)
+  while(not btn(4)) do
+
+  end
+  room_init(level)
 
 end
- room_init(level)
 
-end
  
 function _update()
      t=t+1
