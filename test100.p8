@@ -136,7 +136,7 @@ end
 function _draw()
 cls()
 
-if(not game_over) then
+if(not game_over and not game_over_trap) then
   clip(playerx-32,playery-32,64,64)
 end
 
@@ -152,10 +152,12 @@ if(game_over or game_over_trap) then
    str="!! it's a trap !!"
    end
    
-   print(str,playerx-24,playery,7)
+   
+   print(str,64-#str*2,48,7)
    str="press z to try again"
-   print(str,playerx-32,playery+10,7)
-  end
+   print(str,64-#str*2,74,7)
+
+     end
 else
 
   room(level)
