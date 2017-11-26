@@ -656,19 +656,19 @@ y=y+offsety*8
 
 if check>-1 then
 --esquerda
-if check==1 and (fget(mget(x/8-0.125,y/8),flag_col)==true or fget(mget(x/8-0.125,y/8+0.875),flag_col)==true) then
+if check==1 and (fget(mget(x/8,y/8+0.125),flag_col)==true or fget(mget(x/8,y/8+0.875),flag_col)==true) then
 flagc=1
 end
 --direita 
-if check==2 and (fget(mget(x/8+1,y/8),flag_col)==true or fget(mget(x/8+1,y/8+0.875),flag_col)==true) then
+if check==2 and (fget(mget(x/8+1,y/8+0.125),flag_col)==true or fget(mget(x/8+1,y/8+0.875),flag_col)==true) then
 flagc=1
 end
 --cima
-if check==3 and (fget(mget(x/8,y/8-0.125),flag_col)==true or fget(mget(x/8+0.875,y/8-0.125),flag_col)==true) then
+if check==3 and (fget(mget(x/8+0.125,y/8),flag_col)==true or fget(mget(x/8+0.875,y/8),flag_col)==true) then
 flagc=1
 end
 --baixo
-if check==4 and (fget(mget(x/8,y/8+1),flag_col)==true or fget(mget(x/8+0.875,y/8+1),flag_col)==true) then 
+if check==4 and (fget(mget(x/8+0.125,y/8+1),flag_col)==true or fget(mget(x/8+0.875,y/8+1),flag_col)==true) then 
 flagc=1
 end
  
