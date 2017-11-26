@@ -28,6 +28,9 @@ whip2y=0
 whip_sp1=0
 whip_sp2=0
 
+
+bullets = {}
+
 room_init(level)
 
 end
@@ -92,6 +95,29 @@ for f in all(snk) do
   end
 end
 
+if not game_over then
+for b in all(bullets) do
+  game_over=dead(b.x, b.y)
+  if game_over then
+    break
+  end
+end
+end
+
+if(level==1) then
+  if(t%100<1) then
+    fire_dart_trap()
+  end
+end
+for b in all(bullets) do
+    --b.x+=1
+    if(b.vert == 1) then
+      b.y+=1
+    else
+      b.x+=1
+    end
+end 
+
 
 camera(playerx-8*8, playery-8*8)
 
@@ -135,6 +161,10 @@ spr(e.snake_sp,e.snakex,e.snakey,1,1,e.snakeflipx,e.snakeflipy)
 end
 spr(player_sp,playerx,playery)
 debug()
+
+for b in all(bullets) do
+    spr(b.sp,b.x,b.y)
+end
 
 if(tw>time()-0.25) then
 spr(whip_sp1,whip1x,whip1y)
@@ -331,6 +361,48 @@ end
 
 return false
 
+end
+
+function fire_dart_trap()
+    local b0={
+    sp=115,
+    x=12*8,
+    y=1,
+    vert = 1
+    }
+    add(bullets,b0)
+
+    local b1={
+    sp=115,
+    x=17*8,
+    y=1,
+    vert = 1
+    }
+    add(bullets,b1)
+
+    local b2={
+    sp=115,
+    x=16*8,
+    y=5*8,
+    vert = 1
+    }
+    add(bullets,b2)
+
+    local b3={
+    sp=116,
+    x=5*8,
+    y=2*8,
+    vert = 0
+    }
+    add(bullets,b3)
+
+    local b4={
+    sp=116,
+    x=5*8,
+    y=4*8,
+    vert = 0
+    }
+    add(bullets,b4)
 end
 
 function snakes(snake)
