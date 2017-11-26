@@ -3,6 +3,7 @@ version 14
 __lua__
 t=0
 level=0
+start=true
  
 function _init()
 tw=0
@@ -177,19 +178,21 @@ end
 if(game_over or game_over_trap) then
  for i=0,399 do
    circ(rnd(128),rnd(128),50,rnd(2))
-   
+   size = 0
    if(game_over) then
    str="!! fear the animals !!"
+   size = 43
    end
    
    if(game_over_trap) then
    str="!! it's a trap !!"
+   size = 35
    end
    
    
-   print(str,64-#str*2,48,7)
+    print(str,playerx-size,playery,7)
    str="press z to try again"
-   print(str,64-#str*2,74,7)
+   print(str,playerx-40,playery+10,7)
 
      end
 
