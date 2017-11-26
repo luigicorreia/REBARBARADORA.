@@ -39,7 +39,7 @@ end
 function _update()
      t=t+1
 
-if game_over then
+if game_over or game_over_trap then
   if btnp(4) then 
    _init()
   end
@@ -119,7 +119,7 @@ for b in all(bullets) do
 end 
 
 
-camera(playerx-8*8, playery-8*8)
+--camera(playerx-8*8, playery-8*8)
 
 btstate[1]=btn(0)
 btstate[2]=btn(1)
@@ -135,6 +135,10 @@ end
  
 function _draw()
 cls()
+
+if(not game_over) then
+  clip(playerx-32,playery-32,64,64)
+end
 
 if(game_over or game_over_trap) then
  for i=0,399 do
@@ -155,6 +159,8 @@ if(game_over or game_over_trap) then
 else
 
   room(level)
+
+
 
 for e in all(snk) do
 spr(e.snake_sp,e.snakex,e.snakey,1,1,e.snakeflipx,e.snakeflipy)
@@ -607,20 +613,47 @@ end
  
 function mov()
 
+
+if btn(0) and lastbt==0 and col(1,playerx,playery,2)==1 then
+ -- mset((playerx-8)/8+offsetx, playery/8+offsety, 97)
+ game_over_trap = true
+else
+ 
+    if btn(1) and lastbt==1 and col(2,playerx,playery,2)==1 then 
+     -- mset((playerx+8)/8+offsetx, playery/8+offsety, 97)
+     game_over_trap = true
+    else
+ 
+        if btn(2) and lastbt==2 and col(3,playerx,playery,2)==1 then 
+         -- mset(playerx/8+offsetx, (playery-8)/8+offsety, 97)
+         game_over_trap = true
+        else
+ 
+            if btn(3) and lastbt==3 and  col(4,playerx,playery,2)==1 then 
+             -- mset(playerx/8+offsetx, (playery+8)/8+offsety, 97)
+             game_over_trap = true
+            end
+          end
+
+     end
+end 
+
+
 if btn(0) and lastbt==0 and col(1,playerx,playery,6)==0 then playerx-=1
 else
  
     if btn(1) and lastbt==1 and col(2,playerx,playery,6)==0 then playerx+=1
     else
- 
+
         if btn(2) and lastbt==2 and col(3,playerx,playery,6)==0 then playery-=1
         else
  
             if btn(3) and lastbt==3 and col(4,playerx,playery,6)==0 then playery+=1
             end
+          end
+        end
      end
-    end
-end
+
 
 
 
@@ -829,7 +862,7 @@ ddddddddd50000dd0000000000000000000000000000000000000000000000000000000000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
 __gff__
-4141414141414141414141420202120041414141000000000000000000001000444400000000000000000000000000000000000000000000000000000000000000000000404040400000000000000000000000004000000000000000000000000404000000044c00000000000000000000404040000000000000000000000000
+4141414141414141414141420202120041414141000000000000000000001000444400000000000000000000000000000000000000000000000000000000000000000000404040400000000000000000000000004000000000000000000000000440000000044c00000000000000000000404040000000000000000000000000
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 __map__
 0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
